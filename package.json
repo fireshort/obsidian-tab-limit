@@ -1,6 +1,6 @@
 {
 	"name": "obsidian-tab-limit-lru",
-	"version": "1.1.0",
+	"version": "1.1.1",
 	"description": "An Obsidian plugin that replaces the least recently used Markdown tab when the configured limit is exceeded.",
 	"main": "main.js",
 	"scripts": {
