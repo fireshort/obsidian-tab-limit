@@ -4,7 +4,7 @@ LRU Tab Limiter is an Obsidian plugin that keeps the number of open Markdown tab
 
 When opening a new Markdown tab would exceed the limit, the plugin closes the least recently used Markdown tab instead of blocking the new tab. Switching to a tab marks it as recently used, so older inactive tabs are replaced first.
 
-This project is based on the original [Tab Limiter](https://github.com/lizard-heart/obsidian-tab-limit) plugin and was modified in May 2026 to change the limit behavior from rejection to LRU replacement.
+This project is based on the original Tab Limiter plugin and was modified in May 2026 to change the limit behavior from rejection to LRU replacement.
 
 ## Settings
 
