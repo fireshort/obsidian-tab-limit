@@ -1,26 +1,21 @@
-// Import necessary Obsidian modules
 import { Plugin, PluginSettingTab, Setting, App, WorkspaceLeaf } from "obsidian";
 
-// Define plugin settings
 interface TabLimitSettings {
     globalTabLimit: number;
 }
 
 const DEFAULT_SETTINGS: TabLimitSettings = {
-    globalTabLimit: 5, // Default global limit
+    globalTabLimit: 5,
 };
 
-export default class TabLimitPlugin extends Plugin {
+export default class LruTabLimitPlugin extends Plugin {
     settings: TabLimitSettings;
     private tabAccessOrder = new Map<WorkspaceLeaf, number>();
     private accessCounter = 0;
 
     async onload() {
-        // Load settings
         await this.loadSettings();
-
-        // Add setting tab for configuration
-        this.addSettingTab(new TabLimitSettingTab(this.app, this));
+        this.addSettingTab(new LruTabLimitSettingTab(this.app, this));
 
         this.app.workspace.onLayoutReady(() => {
             this.syncTrackedTabs();
@@ -33,7 +28,6 @@ export default class TabLimitPlugin extends Plugin {
             this.enforceTabLimit();
         }));
 
-        // Hook into the workspace to enforce the tab limit after layout changes
         this.registerEvent(this.app.workspace.on("layout-change", () => {
             this.syncTrackedTabs();
             this.enforceTabLimit();
@@ -115,10 +109,10 @@ export default class TabLimitPlugin extends Plugin {
 }
 
 
-class TabLimitSettingTab extends PluginSettingTab {
-    plugin: TabLimitPlugin;
+class LruTabLimitSettingTab extends PluginSettingTab {
+    plugin: LruTabLimitPlugin;
 
-    constructor(app: App, plugin: TabLimitPlugin) {
+    constructor(app: App, plugin: LruTabLimitPlugin) {
         super(app, plugin);
         this.plugin = plugin;
     }
